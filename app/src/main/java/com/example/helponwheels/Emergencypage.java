@@ -12,17 +12,18 @@ public class Emergencypage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergencypage);
 
-        // Get reference to the Spinner
+        // Incident Type Spinner
         Spinner incidentTypeSpinner = findViewById(R.id.incidentTypeSpinner);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> incidentAdapter = ArrayAdapter.createFromResource(this,
                 R.array.incident_type_options, android.R.layout.simple_spinner_item);
+        incidentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        incidentTypeSpinner.setAdapter(incidentAdapter);
 
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        incidentTypeSpinner.setAdapter(adapter);
+        // Vehicle Type Spinner
+        Spinner vehicleTypeSpinner = findViewById(R.id.vehicleTypeSpinner);
+        ArrayAdapter<CharSequence> vehicleAdapter = ArrayAdapter.createFromResource(this,
+                R.array.vehicle_type_options, android.R.layout.simple_spinner_item);
+        vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vehicleTypeSpinner.setAdapter(vehicleAdapter);
     }
 }
