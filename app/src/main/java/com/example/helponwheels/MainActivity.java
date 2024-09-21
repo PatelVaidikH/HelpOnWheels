@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView; // Import CardView
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -35,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
                 // Create an Intent to navigate to Emergencypage
                 Intent intent = new Intent(MainActivity.this, Emergencypage.class);
                 startActivity(intent); // Start the Emergencypage activity
+            }
+        });
+
+        // Find the service provider card by its ID
+        CardView serviceProviderCard = findViewById(R.id.serviceProviderCard);
+
+        // Set an OnClickListener for the service provider card
+        serviceProviderCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to navigate to Servicepage
+                Intent intent = new Intent(MainActivity.this, Servicepage.class);
+                startActivity(intent); // Start the Servicepage activity
             }
         });
     }

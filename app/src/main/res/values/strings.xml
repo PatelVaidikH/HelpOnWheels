@@ -12,4 +12,13 @@
         <item>Fire</item>
         <item>Police</item>
     </string-array>
+    <string-array name="service_options">
+        <item>Towing    Rs. 500</item>
+        <item>Jumping Battery    Rs. 150</item>
+    </string-array>
+    <string-array name="car_models">
+        <item>Honda BR-V</item>
+        <item>Skoda Kodiaq</item>
+        <item>BMW 630 GT</item>
+    </string-array>
 </resources>
