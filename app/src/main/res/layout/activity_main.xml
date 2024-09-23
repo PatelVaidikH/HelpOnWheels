@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <!-- ScrollView with Constraints -->
@@ -47,6 +48,7 @@
                         android:layout_marginTop="13dp"
                         android:layout_weight="1"
                         android:text="Welcome Back"
+                        android:textColor="@color/black"
                         android:textSize="12dp" />
 
                     <TextView
@@ -55,6 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Vedant Gandhi"
+                        android:textColor="@color/black"
                         android:textSize="15dp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -66,6 +69,7 @@
                     android:layout_weight="1"
                     android:text="Emergency"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:backgroundTint="@color/emergencyRed"
                     android:textSize="12dp"
                     android:layout_marginTop="13dp"
@@ -81,6 +85,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Location"
                 android:textSize="18dp"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <!-- New SearchView for Location Search -->
@@ -93,14 +98,17 @@
                 android:layout_marginTop="5dp"
                 android:queryHint="Enter Your Current Location"
                 android:background="@drawable/rounded_search_background"/>
-            <!-- MapView for displaying the map -->
-<!--            <com.google.android.gms.maps.MapView-->
-<!--                android:id="@+id/mapView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="300dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginStart="13dp"-->
-<!--                android:layout_marginEnd="13dp"/>-->
+
+            <!-- Placeholder for the Map -->
+            <View
+                android:id="@+id/mapPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginEnd="13dp"
+                android:background="@android:color/darker_gray"
+                android:contentDescription="Map will go here" />
 
             <!-- TextView for "Available Service" -->
             <TextView
@@ -110,12 +118,11 @@
                 android:layout_marginStart="13dp"
                 android:layout_marginTop="10dp"
                 android:text="Available Service"
+                android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"/>
 
-
-
-            <!-- Service Provider Card -->
+            <!-- Service Provider Card 1: Patel Towing Service -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/serviceProviderCard"
                 android:layout_width="match_parent"
@@ -139,7 +146,6 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/circle_background"/>
-<!--                        android:src="@drawable/provider_icon" />-->
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -153,6 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Patel Towing Service"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
                             android:textStyle="bold"
                             android:layout_marginStart="2dp"/>
@@ -162,6 +169,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2.3 km Away"
+                            android:textColor="@color/black"
                             android:textSize="14dp"
                             android:layout_marginStart="2dp"/>
                     </LinearLayout>
@@ -187,6 +195,86 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="13 min"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_horizontal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Service Provider Card 2: Gandhi Battery Service -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/serviceProviderCard2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="13dp"
+                android:background="@drawable/card_background"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="13dp">
+
+                    <!-- Icon Circle -->
+                    <ImageView
+                        android:id="@+id/serviceProviderIcon2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/circle_background"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:id="@+id/serviceProviderName2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gandhi Battery Service"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:layout_marginStart="2dp"/>
+
+                        <TextView
+                            android:id="@+id/serviceProviderDistance2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.8 km Away"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:layout_marginStart="2dp"/>
+                    </LinearLayout>
+
+                    <!-- Estimated Time of Arrival -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:background="#000000"
+                        android:padding="8dp"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Estimated Time of Arrival"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20 min"
                             android:textColor="#FFFFFF"
                             android:textSize="16dp"
                             android:textStyle="bold"
