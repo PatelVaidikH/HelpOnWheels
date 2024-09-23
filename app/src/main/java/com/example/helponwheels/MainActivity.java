@@ -2,21 +2,33 @@ package com.example.helponwheels;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView; // Import CardView
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";  // Tag for logging
+    private DatabaseReference myRef;  // Firebase reference
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        EdgeToEdge.enable(this);  // Ensure you have implemented this in your project
         setContentView(R.layout.activity_main);
 
         // Adjust padding based on system bars
@@ -27,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Find the emergency button by its ID
-        Button emergencyButton = findViewById(R.id.Emergencybtn); // Assuming button2 is the emergency button's ID
+        Button emergencyButton = findViewById(R.id.Emergencybtn);
 
         // Set onClickListener for the emergency button
         emergencyButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +61,27 @@ public class MainActivity extends AppCompatActivity {
                 // Create an Intent to navigate to Servicepage
                 Intent intent = new Intent(MainActivity.this, Servicepage.class);
                 startActivity(intent); // Start the Servicepage activity
+            }
+        });
+
+        // Firebase Database interaction
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("message");
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);  // Log the value retrieved from the database
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
