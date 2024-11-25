@@ -2,9 +2,9 @@
     <string name="app_name">HelpOnWheels</string>
     <string name="select_incident_type">Select type of Incident</string>
     <string-array name="incident_type_options">
-        <item>Select type of Incident</item>
         <item>Accident</item>
         <item>Fire</item>
+        <item>Other</item>
     </string-array>
     <string name="select_vehicle_type">Select appropriate Vehicle</string>
     <string-array name="vehicle_type_options">
