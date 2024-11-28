@@ -3,34 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="24dp"
+    android:layout_margin="32dp"
+    android:gravity="center">
 
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Service"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/subtitleText"
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Few minutes and everything will be under control"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <!-- Service Provider Information -->
     <TextView
         android:id="@+id/providerNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Service Provider Name"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/serviceSelectedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selected Service" />
+        android:text="Selected Service"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/carModelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Car Model" />
+        android:text="Car Model"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location" />
+        android:text="Location"
+        android:textSize="16sp"/>
 
+    <!-- Confirm Button -->
     <Button
         android:id="@+id/confirmButton"
         android:layout_width="match_parent"
@@ -39,5 +68,6 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:backgroundTint="@color/black"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"/>
 </LinearLayout>
