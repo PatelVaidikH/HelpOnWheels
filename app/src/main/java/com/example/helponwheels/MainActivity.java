@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -92,6 +93,19 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        // Add the profile icon navigation
+        LinearLayout navbarProfile = findViewById(R.id.navbar_profile);
+
+        // Set an OnClickListener for the profile icon
+        navbarProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to navigate to Profile activity
+                Intent intent = new Intent(MainActivity.this, profile.class);
+                startActivity(intent);  // Start the Profile activity
             }
         });
     }
