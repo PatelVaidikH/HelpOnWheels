@@ -106,14 +106,22 @@
 <!--                android:background="@android:color/darker_gray"-->
 <!--                android:contentDescription="Map will go here" />-->
 
-            <fragment
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:id="@+id/map"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="13dp"
-                android:layout_marginEnd="13dp" />
+                android:layout_marginEnd="13dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <fragment
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.cardview.widget.CardView>
 
             <!-- TextView for "Available Service" -->
             <TextView
@@ -136,7 +144,9 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/card_background"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -216,7 +226,9 @@
                 android:layout_margin="13dp"
                 android:background="@drawable/card_background"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -296,7 +308,9 @@
                 android:layout_margin="13dp"
                 android:background="@drawable/card_background"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -376,7 +390,9 @@
                 android:layout_margin="13dp"
                 android:background="@drawable/card_background"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
