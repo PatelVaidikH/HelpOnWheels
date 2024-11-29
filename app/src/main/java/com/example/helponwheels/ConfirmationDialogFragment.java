@@ -1,6 +1,7 @@
 package com.example.helponwheels;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class ConfirmationDialogFragment extends DialogFragment {
     private String carModel;
     private String location;
 
+    // Constructor to initialize the data
     public ConfirmationDialogFragment(String providerName, String selectedService, String carModel, String location) {
         this.providerName = providerName;
         this.selectedService = selectedService;
@@ -47,10 +49,22 @@ public class ConfirmationDialogFragment extends DialogFragment {
         carModelText.setText(carModel);
         locationText.setText(location);
 
+        // Set up the confirm button action
         confirmButton.setOnClickListener(v -> {
-            // Handle confirmation action
-            dismiss(); // Dismiss the dialog
-            // You can add any further actions here (like booking confirmation logic)
+            // Create an Intent to navigate to the summary page
+            Intent intent = new Intent(getActivity(), summarypage.class);
+
+            // Pass the data to the summary page using Intent extras
+            intent.putExtra("serviceProviderName", providerName);
+            intent.putExtra("serviceType", selectedService);
+            intent.putExtra("carModel", carModel);
+            intent.putExtra("location", location);
+
+            // Start the Summary Page activity
+            startActivity(intent);
+
+            // Dismiss the dialog after confirming
+            dismiss();
         });
 
         dialog.setContentView(view);
