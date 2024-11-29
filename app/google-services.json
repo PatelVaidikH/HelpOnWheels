@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "497500863023",
+    "firebase_url": "https://helponwheels-mad-default-rtdb.firebaseio.com",
+    "project_id": "helponwheels-mad",
+    "storage_bucket": "helponwheels-mad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497500863023:android:c1be77669414ad1dc3a4da",
+        "android_client_info": {
+          "package_name": "com.example.helponwheels"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIS1_DD9YklgtUhv_fSthOrv_Upm58w2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

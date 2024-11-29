@@ -17,15 +17,20 @@
         android:theme="@style/Theme.HelpOnWheels"
         tools:targetApi="31">
 
-        <!-- Main Activity -->
+        <!-- Login Page -->
         <activity
-            android:name=".MainActivity"
+            android:name=".Loginpage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
 
         <!-- Emergency Page -->
         <activity
@@ -36,6 +41,6 @@
         <activity
             android:name=".Servicepage"
             android:exported="true" />
-
     </application>
+
 </manifest>

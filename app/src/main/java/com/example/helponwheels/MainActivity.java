@@ -66,7 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Firebase Database interaction
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("message");
+        myRef = database.getReference("test_message");  // Set a reference for testing
+
+        // Write some test data to the database
+        myRef.setValue("Firebase is connected!");  // Write "Firebase is connected!" to the database
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -76,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
                 Log.d(TAG, "Value is: " + value);  // Log the value retrieved from the database
+
+                // Show the retrieved value as a Toast or Log for confirmation
+                if (value != null) {
+                    Log.d(TAG, "Data from DB: " + value);  // Log the value read from the database
+                } else {
+                    Log.d(TAG, "No data found in the database.");
+                }
             }
 
             @Override
