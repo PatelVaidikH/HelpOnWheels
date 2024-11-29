@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.TextView;
 import android.widget.Toast;
+=======
+import android.widget.LinearLayout;
+>>>>>>> master
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+<<<<<<< HEAD
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Log.w(TAG, "Failed to read value.", databaseError.toException());
@@ -72,5 +77,26 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "User is not logged in");
             Toast.makeText(MainActivity.this, "User is not logged in", Toast.LENGTH_SHORT).show();
         }
+=======
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        // Add the profile icon navigation
+        LinearLayout navbarProfile = findViewById(R.id.navbar_profile);
+
+        // Set an OnClickListener for the profile icon
+        navbarProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to navigate to Profile activity
+                Intent intent = new Intent(MainActivity.this, profile.class);
+                startActivity(intent);  // Start the Profile activity
+            }
+        });
+>>>>>>> master
     }
 }

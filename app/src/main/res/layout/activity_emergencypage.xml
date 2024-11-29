@@ -53,7 +53,7 @@
     <Spinner
         android:id="@+id/incidentTypeSpinner"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="50dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
@@ -68,7 +68,7 @@
     <Spinner
         android:id="@+id/vehicleTypeSpinner"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="50dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
@@ -83,7 +83,7 @@
     <EditText
         android:id="@+id/incidentLocationEditText"
         android:layout_width="match_parent"
-        android:layout_height="120sp"
+        android:layout_height="120dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
@@ -100,7 +100,7 @@
     <!-- Fetch Current Location Button -->
     <Button
         android:id="@+id/fetchLocationButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Fetch Current Location"
@@ -133,7 +133,7 @@
     <!-- Confirm Button -->
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -153,7 +153,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingTop="8sp"
+        android:paddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -211,5 +211,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

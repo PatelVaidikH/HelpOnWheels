@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -16,28 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelpOnWheels"
         tools:targetApi="31">
-
-        <!-- Login Page -->
+        <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
+            android:name=".summarypage"
+            android:exported="false" /> <!-- Login Page -->
         <activity
             android:name=".Loginpage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Main Activity -->
+        </activity> <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-
-        <!-- Emergency Page -->
+            android:exported="true" /> <!-- Emergency Page -->
         <activity
             android:name=".Emergencypage"
-            android:exported="true" />
-
-        <!-- Service Page -->
+            android:exported="true" /> <!-- Service Page -->
         <activity
             android:name=".Servicepage"
             android:exported="true" />
