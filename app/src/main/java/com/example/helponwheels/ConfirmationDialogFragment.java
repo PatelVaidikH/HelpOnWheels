@@ -12,6 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ConfirmationDialogFragment extends DialogFragment {
 
     private String providerName;
@@ -51,6 +57,9 @@ public class ConfirmationDialogFragment extends DialogFragment {
 
         // Set up the confirm button action
         confirmButton.setOnClickListener(v -> {
+            // Save data to Firebase
+            saveToFirebase(providerName, selectedService, carModel, location);
+
             // Create an Intent to navigate to the summary page
             Intent intent = new Intent(getActivity(), summarypage.class);
 
@@ -69,5 +78,31 @@ public class ConfirmationDialogFragment extends DialogFragment {
 
         dialog.setContentView(view);
         return dialog;
+    }
+
+    private void saveToFirebase(String providerName, String serviceType, String carModel, String location) {
+        // Get a reference to the Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("requestTable");
+
+        // Generate a unique ID for each request
+        String requestId = databaseReference.push().getKey();
+
+        // Create a map to hold the data
+        Map<String, Object> requestData = new HashMap<>();
+        requestData.put("serviceProviderName", providerName);
+        requestData.put("serviceType", serviceType);
+        requestData.put("carModel", carModel);
+        requestData.put("location", location);
+
+        // Save the data under the unique ID
+        if (requestId != null) {
+            databaseReference.child(requestId).setValue(requestData)
+                    .addOnSuccessListener(aVoid -> {
+                        // Data saved successfully
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle failure
+                    });
+        }
     }
 }
