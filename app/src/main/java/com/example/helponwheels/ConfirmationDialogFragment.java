@@ -15,7 +15,10 @@ import androidx.fragment.app.DialogFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ConfirmationDialogFragment extends DialogFragment {
@@ -87,12 +90,17 @@ public class ConfirmationDialogFragment extends DialogFragment {
         // Generate a unique ID for each request
         String requestId = databaseReference.push().getKey();
 
+        String requestDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String requestTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
         // Create a map to hold the data
         Map<String, Object> requestData = new HashMap<>();
         requestData.put("serviceProviderName", providerName);
         requestData.put("serviceType", serviceType);
         requestData.put("carModel", carModel);
         requestData.put("location", location);
+        requestData.put("requestDate", requestDate);
+        requestData.put("requestTime", requestTime);
 
         // Save the data under the unique ID
         if (requestId != null) {
