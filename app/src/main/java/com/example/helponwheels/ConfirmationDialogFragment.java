@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,6 +102,7 @@ public class ConfirmationDialogFragment extends DialogFragment {
         requestData.put("location", location);
         requestData.put("requestDate", requestDate);
         requestData.put("requestTime", requestTime);
+        requestData.put("timestamp", ServerValue.TIMESTAMP);
 
         // Save the data under the unique ID
         if (requestId != null) {
