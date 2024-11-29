@@ -1,20 +1,21 @@
 package com.example.helponwheels;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
+import android.widget.TextView;
+import android.widget.Toast;
+=======
 import android.widget.LinearLayout;
+>>>>>>> master
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,72 +24,60 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";  // Tag for logging
-    private DatabaseReference myRef;  // Firebase reference
+    private static final String TAG = "MainActivity";
+    private FirebaseAuth mAuth; // Firebase Auth instance
+    private DatabaseReference mDatabase; // Firebase Database reference
+    private TextView userNameTextView; // TextView to display user name
+    private TextView userTypeTextView; // TextView to display user type
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);  // Ensure you have implemented this in your project
         setContentView(R.layout.activity_main);
 
-        // Adjust padding based on system bars
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Initialize Firebase  Auth and Database
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("userTable");
 
-        // Find the emergency button by its ID
-        Button emergencyButton = findViewById(R.id.Emergencybtn);
+        // Find the TextViews by their ID
+        userNameTextView = findViewById(R.id.textView2); // Assuming textView2 is where username is displayed
 
-        // Set onClickListener for the emergency button
-        emergencyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an Intent to navigate to Emergencypage
-                Intent intent = new Intent(MainActivity.this, Emergencypage.class);
-                startActivity(intent); // Start the Emergencypage activity
-            }
-        });
+        // Get the current user
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid(); // Get the user's unique ID
 
-        // Find the service provider card by its ID
-        CardView serviceProviderCard = findViewById(R.id.serviceProviderCard);
+            // Reference to the specific user in the database using the user ID
+            DatabaseReference userRef = mDatabase.child(userId);
 
-        // Set an OnClickListener for the service provider card
-        serviceProviderCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an Intent to navigate to Servicepage
-                Intent intent = new Intent(MainActivity.this, Servicepage.class);
-                startActivity(intent); // Start the Servicepage activity
-            }
-        });
+            // Fetch user data from the database
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Extract the data from the snapshot
+                        String userName = dataSnapshot.child("userName").getValue(String.class);
 
-        // Firebase Database interaction
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("test_message");  // Set a reference for testing
+                        // Update the UI with the fetched data
+                        userNameTextView.setText(userName); // Set the username in TextView
 
-        // Write some test data to the database
-        myRef.setValue("Firebase is connected!");  // Write "Firebase is connected!" to the database
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);  // Log the value retrieved from the database
-
-                // Show the retrieved value as a Toast or Log for confirmation
-                if (value != null) {
-                    Log.d(TAG, "Data from DB: " + value);  // Log the value read from the database
-                } else {
-                    Log.d(TAG, "No data found in the database.");
+                    } else {
+                        Log.d(TAG, "User data not found in database");
+                        Toast.makeText(MainActivity.this, "User data not found", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
+<<<<<<< HEAD
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.w(TAG, "Failed to read value.", databaseError.toException());
+                }
+            });
+        } else {
+            Log.d(TAG, "User is not logged in");
+            Toast.makeText(MainActivity.this, "User is not logged in", Toast.LENGTH_SHORT).show();
+        }
+=======
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
@@ -108,5 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);  // Start the Profile activity
             }
         });
+>>>>>>> master
     }
 }

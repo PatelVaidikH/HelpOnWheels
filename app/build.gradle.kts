@@ -44,6 +44,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database") // Firebase Database - using BOM to handle versioning
 
     implementation(libs.play.services.location)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

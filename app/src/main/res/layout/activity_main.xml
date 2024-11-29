@@ -51,10 +51,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Vedant Gandhi"
+                        android:text="User Name"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <Button
