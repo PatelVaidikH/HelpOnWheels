@@ -1,6 +1,7 @@
 package com.example.helponwheels;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +14,18 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,19 +34,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth; // Firebase Auth instance
     private DatabaseReference mDatabase; // Firebase Database reference
     private TextView userNameTextView; // TextView to display user name
     private DatabaseReference myRef;  // Firebase reference for test message
+    private GoogleMap myMap;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);  // Ensure you have implemented this in your project
         setContentView(R.layout.activity_main);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         // Initialize Firebase Auth and Database
         mAuth = FirebaseAuth.getInstance();
@@ -84,31 +99,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Set onClickListener for the emergency button
-        emergencyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Emergencypage.class);
-                startActivity(intent);  // Start the Emergencypage activity
-            }
+        emergencyButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Emergencypage.class);
+            startActivity(intent);  // Start the Emergencypage activity
         });
 
         // Set onClickListener for the service provider card
-        serviceProviderCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Servicepage.class);
-                startActivity(intent);  // Start the Servicepage activity
-            }
+        serviceProviderCard.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Servicepage.class);
+            startActivity(intent);  // Start the Servicepage activity
         });
 
         // Add the profile icon navigation
-        navbarProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, profile.class);
-                startActivity(intent);  // Start the Profile activity
-            }
+        navbarProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, profile.class);
+            startActivity(intent);  // Start the Profile activity
         });
+
+        // Initialize FusedLocationProviderClient
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Get the current user
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -143,5 +152,42 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "User is not logged in");
             Toast.makeText(MainActivity.this, "User is not logged in", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        myMap = googleMap;
+
+        // Request location permissions if needed
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+            return;
+        }
+
+        // Try to get the user's current location
+        fusedLocationProviderClient.getLastLocation()
+                .addOnSuccessListener(this, location -> {
+                    if (location != null) {
+                        // User's location found, move the camera to their location
+                        LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                        myMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions().position(userLocation).title("You are here"));
+                        myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+                    } else {
+                        // Location not found, default to Vadodara
+                        LatLng vadodara = new LatLng(22.310696, 73.192635);
+                        myMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions().position(vadodara).title("Marker in Vadodara"));
+                        myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(vadodara, 15));
+                    }
+                })
+                .addOnFailureListener(this, e -> {
+                    Log.e(TAG, "Failed to get location: " + e.getMessage());
+                    // Default to Vadodara on failure
+                    LatLng vadodara = new LatLng(22.310696, 73.192635);
+                    myMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions().position(vadodara).title("Marker in Vadodara"));
+                    myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(vadodara, 15));
+                });
     }
 }

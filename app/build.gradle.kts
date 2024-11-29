@@ -42,6 +42,7 @@ dependencies {
     // Firebase SDK and BOM
     implementation(platform("com.google.firebase:firebase-bom:33.3.0")) // Firebase BOM
     implementation("com.google.firebase:firebase-database") // Firebase Database - using BOM to handle versioning
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 
     implementation(libs.play.services.location)
     implementation(libs.firebase.auth)
