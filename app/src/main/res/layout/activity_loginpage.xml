@@ -8,6 +8,18 @@
     android:background="#F5F5F5"
     android:gravity="center">
 
+    <!-- Big Title -->
+    <TextView
+        android:id="@+id/big_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help on Wheels"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
     <!-- Login Message -->
     <TextView
         android:id="@+id/login_message"
@@ -54,6 +66,17 @@
         android:textColor="#FFFFFF"
         android:padding="12dp"
         android:textStyle="bold" />
+
+    <!-- Small Text: Don't Have an Account? Create One -->
+    <TextView
+        android:id="@+id/create_account_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't Have an Account? Create One"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:layout_marginTop="16dp"
+        android:gravity="center" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

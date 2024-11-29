@@ -1,6 +1,7 @@
 package com.example.helponwheels;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -46,6 +47,18 @@ public class Servicepage extends AppCompatActivity {
         confirmLocationInput = findViewById(R.id.confirmLocationInput);
         bookNowButton = findViewById(R.id.bookNowButton);
         useGpsButton = findViewById(R.id.useGpsButton);
+
+        findViewById(R.id.navbar_profile).setOnClickListener(v -> {
+            // Redirect to Profile.java
+            Intent intent = new Intent(Servicepage.this, profile.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.navbar_home).setOnClickListener(v -> {
+            // Redirect to MainActivity.java
+            Intent intent = new Intent(Servicepage.this, MainActivity.class);
+            startActivity(intent);
+        });
 
         // Initialize FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);

@@ -484,7 +484,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:id="@+id/navbar_home">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -502,7 +503,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:id="@+id/navbar_history">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"

@@ -50,6 +50,18 @@ public class summarypage extends AppCompatActivity {
             finish();  // Finish the current activity (SummaryPage)
         });
 
+        findViewById(R.id.navbar_profile).setOnClickListener(v -> {
+            // Redirect to Profile.java
+            Intent intent = new Intent(summarypage.this, profile.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.navbar_home).setOnClickListener(v -> {
+            // Redirect to MainActivity.java
+            Intent intent = new Intent(summarypage.this, MainActivity.class);
+            startActivity(intent);
+        });
+
         // Retrieve data passed from the previous activity or fragment
         String serviceProviderName = getIntent().getStringExtra("serviceProviderName");
         String serviceType = getIntent().getStringExtra("serviceType");

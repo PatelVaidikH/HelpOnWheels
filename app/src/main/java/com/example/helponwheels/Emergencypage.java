@@ -1,6 +1,7 @@
 package com.example.helponwheels;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -48,7 +49,20 @@ public class Emergencypage extends AppCompatActivity {
         // Fetch Location Button
         Button fetchLocationButton = findViewById(R.id.fetchLocationButton);
         fetchLocationButton.setOnClickListener(v -> fetchCurrentLocation());
+
+        findViewById(R.id.navbar_profile).setOnClickListener(v -> {
+            // Redirect to Profile.java
+            Intent intent = new Intent(Emergencypage.this, profile.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.navbar_home).setOnClickListener(v -> {
+            // Redirect to MainActivity.java
+            Intent intent = new Intent(Emergencypage.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
+
 
     private void initializeSpinners() {
         // Incident Type Spinner

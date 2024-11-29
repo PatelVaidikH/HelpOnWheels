@@ -15,7 +15,7 @@
         android:text="Confirm Service"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="12dp"
         android:textColor="@color/black"/>
 
     <!-- Subtitle -->
@@ -36,28 +36,33 @@
         android:layout_height="wrap_content"
         android:text="Service Provider Name"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:id="@+id/serviceSelectedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selected Service"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:id="@+id/carModelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car Model"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
 
     <!-- Confirm Button -->
     <Button
