@@ -28,5 +28,12 @@
 ## 🎥 Demo Video:
 https://github.com/user-attachments/assets/2bb53974-acb7-4a86-be3e-d43f073acf59
 
+---
 
+## 🤝 Contributors
+
+- **Vaidik Patel**
+- **Vedant Gandhi**
+
+---
 
